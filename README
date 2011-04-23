@@ -1,1 +1,2 @@
 moveTvShows.sh - Script supposed to move TV shows after they are downloaded
+xcode-deployment.sh - Automatically pack your app and sign it. Only usefull if you use Sparkle.
