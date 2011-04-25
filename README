@@ -1,2 +1,3 @@
 moveTvShows.sh - Script supposed to move TV shows after they are downloaded
 xcode-deployment.sh - Automatically pack your app and sign it. Only usefull if you use Sparkle.
+removeIgnoredFiles.sh - This script checks your repo for files that are tracked by git but that are also on your gitignore list. It will then remove thouse files from the git repo. They will still be there only not tracked by git anymore.
