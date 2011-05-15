@@ -15,12 +15,15 @@ while read filename; do
         if [ $extension == "part" ]; then
                 break
         fi
-        newPath=`echo $filename| sed 's/^\([a-zA-Z.]*\)\.[S|[:digit:]].*/\1/'| tr -s '.' ' '`
-        logger -t $0 Moving $filename to $TVSHOWS_FOLDER/$newPath/
+
+        # First replace all _ with . to get consistent filenames
+        newFilename=`echo $filename | sed 's/_/./g'`
+        newPath=`echo $newFilename | sed 's/^\([a-zA-Z.]*\)\.[S|[:digit:]].*/\1/'| tr -s '.' ' '`
+        logger -t $0 Moving $filename to $TVSHOWS_FOLDER/$newPath/$newFilename
         if [ ! -d "$TVSHOWS_FOLDER/$newPath" ]; then
                 logger -t $0 $TVSHOWS_FOLDER/$newPath does not exist. Creating it...
                 mkdir -p "$TVSHOWS_FOLDER/$newPath"
         fi
-        mv $filename "$TVSHOWS_FOLDER/$newPath/$filename"
+        mv $filename "$TVSHOWS_FOLDER/$newPath/$newFilename"
 done
 
