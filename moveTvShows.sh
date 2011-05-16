@@ -1,5 +1,7 @@
 #!/bin/sh
 
+logger -t $0 Starting...
+
 DOWNLOAD_FOLDER=/tmp/mounts/Elements/Serien/Unsortiert
 TVSHOWS_FOLDER=/tmp/mounts/Elements/Serien
 
@@ -13,7 +15,7 @@ ls -1 |
 while read filename; do
         extension=${filename##*.}
         if [ $extension == "part" ]; then
-                break
+                continue
         fi
 
         # First replace all _ with . to get consistent filenames
@@ -26,4 +28,6 @@ while read filename; do
         fi
         mv $filename "$TVSHOWS_FOLDER/$newPath/$newFilename"
 done
+
+logger -t $0 Done
 
