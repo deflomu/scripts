@@ -19,7 +19,7 @@ while read filename; do
         fi
 
         # First replace all _ and whitespace chars with . to get consistent filenames
-        newFilename=`echo "$filename" | sed 's/[_ ]/./g' | sed 's/\.\W\././g'`
+        newFilename=`echo "$filename" | sed 's/[_ ]/./g' | sed 's/\W\{2,\}/./g'`
         newPath=`echo $newFilename | sed 's/^\([a-zA-Z.]*\)\.[S|[:digit:]].*/\1/'| tr -s '.' ' '`
         logger -t $0 Moving $filename to $TVSHOWS_FOLDER/$newPath/$newFilename
         if [ ! -d "$TVSHOWS_FOLDER/$newPath" ]; then
